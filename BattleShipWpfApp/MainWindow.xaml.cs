@@ -27,10 +27,15 @@ namespace BattleShipWpfApp
 
         public MainWindow()
         {
-
             InitializeComponent();
             gridArray = new String[gridSize, gridSize];
             buttonArray = new Button[gridSize, gridSize];
+
+            Random random = new Random();
+            int randomNumber1 = random.Next();
+            int randomNumber2 = random.Next();
+
+            gridArray[randomNumber1, randomNumber2] = "Skib";
 
             for (int i = 0; i < gridSize; i++)
             {
@@ -49,22 +54,20 @@ namespace BattleShipWpfApp
                 {
                     Button btn = new Button();
                     btn.Click += gridClicked(i, j);
-                    btn.Content = "knap?";
+                    btn.Content = "[" + i + "," + j + "]";
                     buttonArray[i, j] = btn;
                     btn.Margin = new Thickness(2, 2, 2, 2);
                     ViewGrid.Children.Add(btn);
                     Grid.SetColumn(btn, i);
                     Grid.SetRow(btn, j);
-
-
-
                 }
             }
         }
 
         private RoutedEventHandler gridClicked(int i, int j)
         {
-            return (btn, e) => buttonArray[i, j].Content = "ok";
+            //return (btn, e) => buttonArray[i, j].Content = "ok";
+            return (btn, e) => buttonArray[i, j].Content = gridArray[i,j];
         }
             }
 }
