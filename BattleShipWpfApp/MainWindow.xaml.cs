@@ -38,7 +38,7 @@ namespace BattleShipWpfApp
             gridArray = new String[gridSize, gridSize];
             buttonArray = new Button[gridSize, gridSize];
 
-            for (int i = 0; i < gridSize; i++) for (int j = 0; j < gridSize; j++) gridArray[i, j] = "";
+            for (int i = 0; i < gridSize; i++) for (int j = 0; j < gridSize; j++) gridArray[i, j] = "Plask";
 
             NewShip(5, "Hangarskib");
             NewShip(4, "Slagskib");
@@ -63,16 +63,18 @@ namespace BattleShipWpfApp
                 {
                     Button btn = new Button();
                     btn.Click += gridClicked(i, j);
+                    //btn.Background = new SolidColorBrush(Colors.Green);
 
-                    if (gridArray[i, j] == "Hangarskib") btn.Content = "H";
-                    else if (gridArray[i, j] == "Slagskib") btn.Content = "S";
-                    else if (gridArray[i, j] == "Destroyer") btn.Content = "D";
-                    else if (gridArray[i, j] == "Ubåd") btn.Content = "U";
-                    else if (gridArray[i, j] == "Patruljebåd") btn.Content = "P";
-                    else
-                    {
-                        btn.Content = "[" + i + "," + j + "]";
-                    }
+                    //if (gridArray[i, j] == "Hangarskib") btn.Content = "H";
+                    //else if (gridArray[i, j] == "Slagskib") btn.Content = "S";
+                    //else if (gridArray[i, j] == "Destroyer") btn.Content = "D";
+                    //else if (gridArray[i, j] == "Ubåd") btn.Content = "U";
+                    //else if (gridArray[i, j] == "Patruljebåd") btn.Content = "P";
+                    //else
+                    //{
+                    //    btn.Content = "[" + i + "," + j + "]";
+                    //}
+                    btn.Content = "[" + i + "," + j + "]";
                     buttonArray[i, j] = btn;
                     btn.Margin = new Thickness(2, 2, 2, 2);
                     ViewGrid.Children.Add(btn);
@@ -98,14 +100,14 @@ namespace BattleShipWpfApp
                 {
                     if (retning == 0)
                     {
-                        if (koordinat2 < 5 && gridArray[koordinat1, koordinat2 + i] == "") counter++;
-                        else if (koordinat2 >= 5 && gridArray[koordinat1, koordinat2 - i] == "") counter++;
+                        if (koordinat2 < 5 && gridArray[koordinat1, koordinat2 + i] == "Plask") counter++;
+                        else if (koordinat2 >= 5 && gridArray[koordinat1, koordinat2 - i] == "Plask") counter++;
                         else counter = 0;
                     }
                     else
                     {
-                        if (koordinat1 < 5 && gridArray[koordinat1 + i, koordinat2] == "") counter++;
-                        else if (koordinat1 >= 5 && gridArray[koordinat1 - i, koordinat2] == "") counter++;
+                        if (koordinat1 < 5 && gridArray[koordinat1 + i, koordinat2] == "Plask") counter++;
+                        else if (koordinat1 >= 5 && gridArray[koordinat1 - i, koordinat2] == "Plask") counter++;
                         else counter = 0;
                     }
                 }
@@ -113,13 +115,13 @@ namespace BattleShipWpfApp
                 {
                     if (retning == 0)
                     {
-                        if (koordinat2 < 5) for (int i = 0; i < size; i++) gridArray[koordinat1, koordinat2 + i] = name;
-                        else if (koordinat2 >= 5) for (int i = 0; i < size; i++) gridArray[koordinat1, koordinat2 - i] = name;
+                        if (koordinat2 < 5) for (int i = 0; i < size; i++) gridArray[koordinat1, koordinat2 + i] = "Ramt";
+                        else if (koordinat2 >= 5) for (int i = 0; i < size; i++) gridArray[koordinat1, koordinat2 - i] = "Ramt";
                     }
                     else
                     {
-                        if (koordinat1 < 5) for (int i = 0; i < size; i++) gridArray[koordinat1 + i, koordinat2] = name;
-                        else if (koordinat1 >= 5) for (int i = 0; i < size; i++) gridArray[koordinat1 - i, koordinat2] = name;
+                        if (koordinat1 < 5) for (int i = 0; i < size; i++) gridArray[koordinat1 + i, koordinat2] = "Ramt";
+                        else if (koordinat1 >= 5) for (int i = 0; i < size; i++) gridArray[koordinat1 - i, koordinat2] = "Ramt";
                     }
 
                     check = false;
@@ -130,7 +132,22 @@ namespace BattleShipWpfApp
 
         private RoutedEventHandler gridClicked(int i, int j)
         {
-            return (btn, e) => buttonArray[i, j].Content = gridArray[i,j];
+            return (btn, e) =>
+            {
+
+                buttonArray[i, j].Content = gridArray[i, j];
+                if (gridArray[i, j] == "Plask")
+                {
+                    buttonArray[i, j].Background = new SolidColorBrush(Colors.Blue);
+                    buttonArray[i, j].Foreground = new SolidColorBrush(Colors.White);
+                }
+                else
+                {
+                    buttonArray[i, j].Background = new SolidColorBrush(Colors.Red);
+                    buttonArray[i, j].Foreground = new SolidColorBrush(Colors.White);
+                }
+                
+            };
         }
             }
 }
