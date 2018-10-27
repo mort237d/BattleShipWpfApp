@@ -32,6 +32,12 @@ namespace BattleShipWpfApp
         String[,] gridArray;
         Button[,] buttonArray;
 
+        private int missed = 0;
+        private TextBlock missedText;
+        private TextBlock missedTextNumber;
+
+        private int hit = 0;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -46,7 +52,7 @@ namespace BattleShipWpfApp
             NewShip(3, "Ubåd");
             NewShip(2, "Patruljebåd");
 
-            for (int i = 0; i < gridSize; i++)
+            for (int i = 0; i < gridSize+2; i++)
             {
                 RowDefinition rd = new RowDefinition();
                 rd.Height = new GridLength(50, GridUnitType.Pixel);
@@ -63,8 +69,6 @@ namespace BattleShipWpfApp
                 {
                     Button btn = new Button();
                     btn.Click += gridClicked(i, j);
-                    //btn.Background = new SolidColorBrush(Colors.Green);
-
                     //if (gridArray[i, j] == "Hangarskib") btn.Content = "H";
                     //else if (gridArray[i, j] == "Slagskib") btn.Content = "S";
                     //else if (gridArray[i, j] == "Destroyer") btn.Content = "D";
@@ -83,7 +87,17 @@ namespace BattleShipWpfApp
                 }
             }
             
+            missedText = new TextBlock();
+            missedText.Text = "Missed:\nHit:";
+            ViewGrid.Children.Add(missedText);
+            Grid.SetColumn(missedText, 10);
+            Grid.SetRow(missedText, 0);
 
+            missedTextNumber = new TextBlock();
+            missedTextNumber.Text = "" + missed + "\n" + hit;
+            ViewGrid.Children.Add(missedTextNumber);
+            Grid.SetColumn(missedTextNumber, 11);
+            Grid.SetRow(missedTextNumber, 0);
         }
 
         private void NewShip(int size, string name)
@@ -134,19 +148,23 @@ namespace BattleShipWpfApp
         {
             return (btn, e) =>
             {
-
                 buttonArray[i, j].Content = gridArray[i, j];
                 if (gridArray[i, j] == "Plask")
                 {
                     buttonArray[i, j].Background = new SolidColorBrush(Colors.Blue);
                     buttonArray[i, j].Foreground = new SolidColorBrush(Colors.White);
+
+                    missed++;
+                    missedTextNumber.Text = "" + missed + "\n" + hit;
                 }
                 else
                 {
                     buttonArray[i, j].Background = new SolidColorBrush(Colors.Red);
                     buttonArray[i, j].Foreground = new SolidColorBrush(Colors.White);
+
+                    hit++;
+                    missedTextNumber.Text = "" + missed + "\n" + hit;
                 }
-                
             };
         }
             }
