@@ -33,8 +33,9 @@ namespace BattleShipWpfApp
         Button[,] buttonArray;
 
         private int missed = 0;
-        private TextBlock missedText;
-        private TextBlock missedTextNumber;
+        private TextBlock textForNumbers;
+        private TextBlock numbers;
+        private TextBlock ships;
 
         private int hit = 0;
 
@@ -87,17 +88,28 @@ namespace BattleShipWpfApp
                 }
             }
             
-            missedText = new TextBlock();
-            missedText.Text = "Missed:\nHit:";
-            ViewGrid.Children.Add(missedText);
-            Grid.SetColumn(missedText, 10);
-            Grid.SetRow(missedText, 0);
+            textForNumbers = new TextBlock();
+            textForNumbers.Text = "Missed:\nHit:";
+            ViewGrid.Children.Add(textForNumbers);
+            Grid.SetColumn(textForNumbers, 10);
+            Grid.SetRow(textForNumbers, 0);
 
-            missedTextNumber = new TextBlock();
-            missedTextNumber.Text = "" + missed + "\n" + hit;
-            ViewGrid.Children.Add(missedTextNumber);
-            Grid.SetColumn(missedTextNumber, 11);
-            Grid.SetRow(missedTextNumber, 0);
+            numbers = new TextBlock();
+            numbers.Text = "" + missed + "\n" + hit;
+            ViewGrid.Children.Add(numbers);
+            Grid.SetColumn(numbers, 11);
+            Grid.SetRow(numbers, 0);
+
+            ships = new TextBlock();
+            ships.Text = "Skibe:" +
+                         "\nHangarskib:" +
+                         "\nSlagskib:" +
+                         "\nDestroyer:" +
+                         "\nUbåd:" +
+                         "\nPatruljebåd:";
+            ViewGrid.Children.Add(ships);
+            Grid.SetColumn(ships, 10);
+            Grid.SetRow(ships, 7);
         }
 
         private void NewShip(int size, string name)
@@ -155,7 +167,7 @@ namespace BattleShipWpfApp
                     buttonArray[i, j].Foreground = new SolidColorBrush(Colors.White);
 
                     missed++;
-                    missedTextNumber.Text = "" + missed + "\n" + hit;
+                    numbers.Text = "" + missed + "\n" + hit;
                 }
                 else
                 {
@@ -163,7 +175,7 @@ namespace BattleShipWpfApp
                     buttonArray[i, j].Foreground = new SolidColorBrush(Colors.White);
 
                     hit++;
-                    missedTextNumber.Text = "" + missed + "\n" + hit;
+                    numbers.Text = "" + missed + "\n" + hit;
                 }
             };
         }
