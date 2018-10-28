@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace BattleShipWpfApp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private int koordinat1;
@@ -33,11 +30,12 @@ namespace BattleShipWpfApp
         Button[,] buttonArray;
 
         private int missed = 0;
-        private TextBlock textForNumbers;
-        private TextBlock numbers;
+        private int hit = 0;
+        private TextBlock hitsAndMissed;
         private TextBlock ships;
 
-        private int hit = 0;
+        private RowDefinition rd;
+        private ColumnDefinition cd;
 
         public MainWindow()
         {
@@ -53,16 +51,24 @@ namespace BattleShipWpfApp
             NewShip(3, "Ubåd");
             NewShip(2, "Patruljebåd");
 
-            for (int i = 0; i < gridSize+2; i++)
+            for (int i = 0; i < gridSize; i++)
             {
-                RowDefinition rd = new RowDefinition();
+                rd = new RowDefinition();
                 rd.Height = new GridLength(50, GridUnitType.Pixel);
                 ViewGrid.RowDefinitions.Add(rd);
 
-                ColumnDefinition cd = new ColumnDefinition();
+                cd = new ColumnDefinition();
                 cd.Width = new GridLength(50, GridUnitType.Pixel);
                 ViewGrid.ColumnDefinitions.Add(cd);
             }
+
+            rd = new RowDefinition();
+            rd.Height = new GridLength(50, GridUnitType.Pixel);
+            ViewGrid.RowDefinitions.Add(rd);
+
+            cd = new ColumnDefinition();
+            cd.Width = new GridLength(100, GridUnitType.Pixel);
+            ViewGrid.ColumnDefinitions.Add(cd);
 
             for (int i = 0; i < gridSize; i++)
             {
@@ -88,28 +94,28 @@ namespace BattleShipWpfApp
                 }
             }
             
-            textForNumbers = new TextBlock();
-            textForNumbers.Text = "Missed:\nHit:";
-            ViewGrid.Children.Add(textForNumbers);
-            Grid.SetColumn(textForNumbers, 10);
-            Grid.SetRow(textForNumbers, 0);
-
-            numbers = new TextBlock();
-            numbers.Text = "" + missed + "\n" + hit;
-            ViewGrid.Children.Add(numbers);
-            Grid.SetColumn(numbers, 11);
-            Grid.SetRow(numbers, 0);
+            hitsAndMissed = new TextBlock();
+            hitsAndMissed.Text = "Missed: " + missed +
+                                 "\nHit: " + hit;
+            ViewGrid.Children.Add(hitsAndMissed);
+            Grid.SetColumn(hitsAndMissed, 10);
+            Grid.SetRow(hitsAndMissed, 0);
 
             ships = new TextBlock();
-            ships.Text = "Skibe:" +
-                         "\nHangarskib:" +
-                         "\nSlagskib:" +
-                         "\nDestroyer:" +
-                         "\nUbåd:" +
-                         "\nPatruljebåd:";
+            ships.Text = "Skibe og størrelse:" +
+                         "\n- Hangarskib: 5" +
+                         "\n- Slagskib: 4";
             ViewGrid.Children.Add(ships);
             Grid.SetColumn(ships, 10);
             Grid.SetRow(ships, 7);
+
+            ships = new TextBlock();
+            ships.Text = "- Destroyer: 3" +
+                         "\n- Ubåd: 3" +
+                         "\n- Patruljebåd: 2";
+            ViewGrid.Children.Add(ships);
+            Grid.SetColumn(ships, 10);
+            Grid.SetRow(ships, 8);
         }
 
         private void NewShip(int size, string name)
@@ -167,7 +173,8 @@ namespace BattleShipWpfApp
                     buttonArray[i, j].Foreground = new SolidColorBrush(Colors.White);
 
                     missed++;
-                    numbers.Text = "" + missed + "\n" + hit;
+                    hitsAndMissed.Text = "Missed: " + missed +
+                                         "\nHit: " + hit;
                 }
                 else
                 {
@@ -175,7 +182,8 @@ namespace BattleShipWpfApp
                     buttonArray[i, j].Foreground = new SolidColorBrush(Colors.White);
 
                     hit++;
-                    numbers.Text = "" + missed + "\n" + hit;
+                    hitsAndMissed.Text = "Missed: " + missed +
+                                         "\nHit: " + hit;
                 }
             };
         }
