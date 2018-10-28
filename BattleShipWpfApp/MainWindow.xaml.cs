@@ -36,6 +36,8 @@ namespace BattleShipWpfApp
 
         private RowDefinition rd;
         private ColumnDefinition cd;
+        private TextBlock victory;
+        private Button btn;
 
         public MainWindow()
         {
@@ -74,7 +76,7 @@ namespace BattleShipWpfApp
             {
                 for (int j = 0; j < gridSize; j++)
                 {
-                    Button btn = new Button();
+                    btn = new Button();
                     btn.Click += gridClicked(i, j);
                     //if (gridArray[i, j] == "Hangarskib") btn.Content = "H";
                     //else if (gridArray[i, j] == "Slagskib") btn.Content = "S";
@@ -116,6 +118,12 @@ namespace BattleShipWpfApp
             ViewGrid.Children.Add(ships);
             Grid.SetColumn(ships, 10);
             Grid.SetRow(ships, 8);
+
+            victory = new TextBlock();
+            victory.Text = "";
+            ViewGrid.Children.Add(victory);
+            Grid.SetColumn(victory, 10);
+            Grid.SetRow(victory, 9);
         }
 
         private void NewShip(int size, string name)
@@ -184,6 +192,11 @@ namespace BattleShipWpfApp
                     hit++;
                     hitsAndMissed.Text = "Missed: " + missed +
                                          "\nHit: " + hit;
+                }
+
+                if (hit == 17)
+                {
+                    victory.Text = "Victory!!!";
                 }
             };
         }
