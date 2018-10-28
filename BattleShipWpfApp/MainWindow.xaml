@@ -6,11 +6,14 @@
         xmlns:local="clr-namespace:BattleShipWpfApp"
         mc:Ignorable="d"
         Title="Sænke slagskib" Height="550" Width="800">
-    
-        <StackPanel>
-            <Grid x:Name="ViewGrid" VerticalAlignment="Center" HorizontalAlignment="Center">
+    <Window.Background>
+        <ImageBrush ImageSource="C:\Users\Morten\Source\Repos\BattleShipWpfApp\BattleShipWpfApp\explosion-land-or-water-2.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
 
-            </Grid>
+    <StackPanel>
+            <Grid x:Name="ViewGrid" VerticalAlignment="Center" HorizontalAlignment="Center">
+                
+        </Grid>
         </StackPanel>
     
 </Window>

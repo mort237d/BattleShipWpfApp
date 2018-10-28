@@ -97,6 +97,7 @@ namespace BattleShipWpfApp
             }
             
             hitsAndMissed = new TextBlock();
+            hitsAndMissed.Foreground = new SolidColorBrush(Colors.White);
             hitsAndMissed.Text = "Missed: " + missed +
                                  "\nHit: " + hit;
             ViewGrid.Children.Add(hitsAndMissed);
@@ -104,6 +105,7 @@ namespace BattleShipWpfApp
             Grid.SetRow(hitsAndMissed, 0);
 
             ships = new TextBlock();
+            ships.Foreground = new SolidColorBrush(Colors.White);
             ships.Text = "Skibe og størrelse:" +
                          "\n- Hangarskib: 5" +
                          "\n- Slagskib: 4";
@@ -112,6 +114,7 @@ namespace BattleShipWpfApp
             Grid.SetRow(ships, 7);
 
             ships = new TextBlock();
+            ships.Foreground = new SolidColorBrush(Colors.White);
             ships.Text = "- Destroyer: 3" +
                          "\n- Ubåd: 3" +
                          "\n- Patruljebåd: 2";
@@ -120,6 +123,7 @@ namespace BattleShipWpfApp
             Grid.SetRow(ships, 8);
 
             victory = new TextBlock();
+            victory.Foreground = new SolidColorBrush(Colors.White);
             victory.Text = "";
             ViewGrid.Children.Add(victory);
             Grid.SetColumn(victory, 10);
