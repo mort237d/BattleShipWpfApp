@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Sænke slagskib" Height="550" Width="800">
     <Window.Background>
-        <ImageBrush ImageSource="C:\Users\Morten\Source\Repos\BattleShipWpfApp\BattleShipWpfApp\explosion-land-or-water-2.jpg" Stretch="UniformToFill"/>
+        <ImageBrush ImageSource="\Resources\explosion-land-or-water-2.jpg" Stretch="UniformToFill"/>
     </Window.Background>
 
     <StackPanel>
