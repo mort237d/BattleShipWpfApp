@@ -201,6 +201,13 @@ namespace BattleShipWpfApp
                 if (hit == 17)
                 {
                     victory.Text = "Victory!!!";
+                    for (int k = 0; k < gridSize; k++)
+                    {
+                        for (int l = 0; l < gridSize; l++)
+                        {
+                            buttonArray[k, l].Content = "Victory";
+                        }
+                    }
                 }
             };
         }
