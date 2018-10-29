@@ -55,21 +55,17 @@ namespace BattleShipWpfApp
 
             for (int i = 0; i < gridSize; i++)
             {
-                rd = new RowDefinition();
-                rd.Height = new GridLength(50, GridUnitType.Pixel);
+                rd = new RowDefinition {Height = new GridLength(50, GridUnitType.Pixel)};
                 ViewGrid.RowDefinitions.Add(rd);
 
-                cd = new ColumnDefinition();
-                cd.Width = new GridLength(50, GridUnitType.Pixel);
+                cd = new ColumnDefinition {Width = new GridLength(50, GridUnitType.Pixel)};
                 ViewGrid.ColumnDefinitions.Add(cd);
             }
 
-            rd = new RowDefinition();
-            rd.Height = new GridLength(50, GridUnitType.Pixel);
+            rd = new RowDefinition {Height = new GridLength(50, GridUnitType.Pixel)};
             ViewGrid.RowDefinitions.Add(rd);
 
-            cd = new ColumnDefinition();
-            cd.Width = new GridLength(100, GridUnitType.Pixel);
+            cd = new ColumnDefinition {Width = new GridLength(100, GridUnitType.Pixel)};
             ViewGrid.ColumnDefinitions.Add(cd);
 
             for (int i = 0; i < gridSize; i++)
@@ -77,7 +73,7 @@ namespace BattleShipWpfApp
                 for (int j = 0; j < gridSize; j++)
                 {
                     btn = new Button();
-                    btn.Click += gridClicked(i, j);
+                    btn.Click += GridClicked(i, j);
                     //if (gridArray[i, j] == "Hangarskib") btn.Content = "H";
                     //else if (gridArray[i, j] == "Slagskib") btn.Content = "S";
                     //else if (gridArray[i, j] == "Destroyer") btn.Content = "D";
@@ -95,36 +91,33 @@ namespace BattleShipWpfApp
                     Grid.SetRow(btn, j);
                 }
             }
-            
-            hitsAndMissed = new TextBlock();
-            hitsAndMissed.Foreground = new SolidColorBrush(Colors.White);
-            hitsAndMissed.Text = "Missed: " + missed +
-                                 "\nHit: " + hit;
+
+            hitsAndMissed = new TextBlock
+            {
+                Foreground = new SolidColorBrush(Colors.White),
+                Text = "Missed: " + missed +
+                       "\nHit: " + hit
+            };
             ViewGrid.Children.Add(hitsAndMissed);
             Grid.SetColumn(hitsAndMissed, 10);
             Grid.SetRow(hitsAndMissed, 0);
 
-            ships = new TextBlock();
-            ships.Foreground = new SolidColorBrush(Colors.White);
-            ships.Text = "Skibe og størrelse:" +
-                         "\n- Hangarskib: 5" +
-                         "\n- Slagskib: 4";
+            ships = new TextBlock
+            {
+                Foreground = new SolidColorBrush(Colors.White),
+                Text = "Skibe og størrelse:" +
+                       "\n- Hangarskib: 5" +
+                       "\n- Slagskib: 4" +
+                       "\n- Destroyer: 3" +
+                       "\n- Ubåd: 3" +
+                       "\n- Patruljebåd: 2"
+            };
             ViewGrid.Children.Add(ships);
+            Grid.SetRowSpan(ships, 2);
             Grid.SetColumn(ships, 10);
             Grid.SetRow(ships, 7);
 
-            ships = new TextBlock();
-            ships.Foreground = new SolidColorBrush(Colors.White);
-            ships.Text = "- Destroyer: 3" +
-                         "\n- Ubåd: 3" +
-                         "\n- Patruljebåd: 2";
-            ViewGrid.Children.Add(ships);
-            Grid.SetColumn(ships, 10);
-            Grid.SetRow(ships, 8);
-
-            victory = new TextBlock();
-            victory.Foreground = new SolidColorBrush(Colors.White);
-            victory.Text = "";
+            victory = new TextBlock {Foreground = new SolidColorBrush(Colors.White), Text = ""};
             ViewGrid.Children.Add(victory);
             Grid.SetColumn(victory, 10);
             Grid.SetRow(victory, 9);
@@ -174,7 +167,7 @@ namespace BattleShipWpfApp
 
         }
 
-        private RoutedEventHandler gridClicked(int i, int j)
+        private RoutedEventHandler GridClicked(int i, int j)
         {
             return (btn, e) =>
             {

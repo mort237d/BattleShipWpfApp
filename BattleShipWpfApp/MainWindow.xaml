@@ -7,13 +7,14 @@
         mc:Ignorable="d"
         Title="Sænke slagskib" Height="550" Width="800">
     <Window.Background>
-        <ImageBrush ImageSource="\Resources\explosion-land-or-water-2.jpg" Stretch="UniformToFill"/>
+        <ImageBrush ImageSource="\Resources\explosion-land-or-water-2.jpg" Stretch="UniformToFill"></ImageBrush>
     </Window.Background>
 
     <StackPanel>
             <Grid x:Name="ViewGrid" VerticalAlignment="Center" HorizontalAlignment="Center">
                 
         </Grid>
+
         </StackPanel>
     
 </Window>
